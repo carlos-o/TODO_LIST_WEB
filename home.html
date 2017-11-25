@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>TodoList</title>
+</head>
+<body class="fondo">
+  <ul id="dropdown1" class="dropdown-content navbar__drow">
+  <li><a href="#modal3" class="waves-effect waves-light modal-trigger">ChangePassword</a></li>
+  <li class="divider"></li>
+  <li><a href="#" onclick="logoutSystem()" style="text-align:center;">Logout</a></li>
+</ul>
+<nav style="background-color: #82b1ff;">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo toggle-btn" style="top: 20%;left: 2%;" onclick="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <ul class="right"><!--hide-on-med-and-down-->
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons" style="font-size:3em;">account_circle</i></a></li>
+    </ul>
+  </div>
+</nav>
+<div id="sidebar">
+ <ul>
+   <li><a href="#">home</a></li>
+   <li><a href="#">About</a></li>
+   <li><a href="#">contact</a></li>
+ </ul>
+ </div>
+  <div class="container">
+    <div class="row">
+      <div class="col offset-s3 boxinput" id="cuerpo">
+        <div class="input-field" id="inputfiled">
+            <label for="transform" style="font-size: 1.1rem;top: -7px;">Crea una nueva nota...</label>
+            <input id="transform" onclick="transform()" type="text" name="transform" style="border-bottom: none;width: 80%;"class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Create new note">
+            <ul>
+              <li>
+                <a href="#" id="list" onclick="transformList()"><i class="material-icons prefix tooltipped" data-position="botttom" data-delay="50" data-tooltip="Crete new note with list">format_list_bulleted</i></a>
+              </li>
+              <li>
+                <a href="#" id="list2"><i class="material-icons prefix tooltipped" data-position="bottom" data-delay="50" data-tooltip="List with image">image</i></a>
+              </li>
+            </ul>
+        </div>
+      </div>
+      <!-- cuerpo del profile user -->
+      <div id="bodyelement" name="bodyelement">
+        <div class="col s12 m4 l4" id="col1">
+        </div>
+        <div class="col s12 m4 l4" id="col2">
+        </div>
+        <div class="col s12 m4 l4" id="col3">
+        </div>
+        </div>
+        <!--end of col-->
+      </div>
+    </div>
+    <!--Modal para editar nota simple-->
+    <div id="modal1" class="modal modal__recover modal-fixed-footer">
+     <div class="modal-content">
+       <h4 style="color:#1976d2;" align="center">Note Editing<i class="material-icons prefix iconbox" >edit</i></h4>
+       <form id="normalForm" method="put">
+        <div class="input-field">
+          <input id="modaltitle" name="modaltitle" type="text" class="validate">
+          <!-- <input id="modaltitle" name="modaltitle" type="text" class="validate" value="titulo"> -->
+        </div>
+        <div class="input-field">
+          <textarea id="modaltextarea" name="modaltextarea" class="materialize-textarea"></textarea>
+          <!-- <textarea id="modaltextarea" name="modaldescription" class="materialize-textarea">I am a very simple card. I am good at containing small bits of information.</textarea> -->
+        </div>
+          <p class="date" style="margin-bottom:25px;">Modified Date: <span id="modaldate"></span></p>
+          <button id="editnote" name="editnote" type="submit" class="btn button" style="margin: 0 auto;display: table;">Send</button>
+       </div>
+       </form>
+     <div class="modal-footer">
+       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+     </div>
+    </div>
+    <!--Modal para editar nota con lista -->
+    <div id="modal2" class="modal modal__recover modal-fixed-footer">
+     <div class="modal-content">
+       <h4 style="color:#1976d2;" align="center">Note Editing<i class="material-icons prefix iconbox" >edit</i></h4>
+       <form id="listForm" method="put">
+        <div class="input-field">
+          <input id="modaltitlelist" name="modaltitlelist" type="text" class="validate">
+        </div>
+        <div class="input-field">
+          <textarea id="modaltextarealist" name="modaltextarealist" class="materialize-textarea"></textarea>
+        </div>
+          <ul id="myListModal" class="myList">
+              <!-- <li id="deleteModal">
+                <div id="CheckBoxModal" style="display:none;" >
+                    <input type="checkbox" name="checkmodal" class="filled-in" id="checkmodal" onclick="completedTask('checkmodal','inputlistmodal')"/>
+                    <label for="checkmodal" style="top:3vh;" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Task completed"></label>
+                </div>
+                <input type="text" name="inputlistmodal" id="inputlistmodal" placeholder="Elemento de lista" style="width: 65%;" onkeyup="whichButton(event,'CheckBoxModal')" >
+                <a class="btn-floating waves-effect waves-ligh red tooltipped" onclick="deleteInput('deleteModal','myListModal')" style=" bottom: 0px !important; left:-7px;" data-position="right" data-delay="50" data-tooltip="Remove task">
+                  <i class="material-icons">delete</i>
+                </a>
+              </li> -->
+          </ul>
+        <a class="btn-floating btn-large waves-effect waves-light red tooltipped" onclick="createElementLi('myListModal','deleteModal','inputlistmodal','checkmodal','CheckBoxModal')" style="top: 35px;right: 10px;" data-position="bottom" data-delay="50" data-tooltip="Add new task"><i class="material-icons">add</i></a>
+          <p class="date" style="margin-bottom:25px;">Fecha modificacion: <span id="modaldatelist"></span></p>
+          <input id="editnotelist" name="editnotelist" type="submit" class="btn button" style="margin: 0 auto;display: table;" value="Send" onclick="editNoteList()">
+          </form>
+       </div>
+     <div class="modal-footer">
+       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="removeChildList()">Close</a>
+     </div>
+    </div>
+    <!--modal change password-->
+  <div id="modal3" class="modal modal__recover modal-fixed-footer">
+    <div class="modal-content">
+      <h4 style="color:#1976d2;" align="center">Change password<i class="material-icons prefix iconbox" >lock</i></h4>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <form id="changeform" method="PUT">
+            <div class="input-field">
+              <i class="material-icons prefix" style="top:15px;">lock</i>
+              <input id="oldpasswordchange" type="password" name="oldpasswordchange" placeholder="Type your the previous password">
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix" style="top:15px;">lock</i>
+              <input id="newpasswordchange" type="password" name="newpasswordchange" placeholder="Type your the new password">
+            </div>
+            <div class="input-field">
+              <button id="recover" name="recover" type="submit" class="btn button" style="margin: 0 auto;display: table;">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/reset.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/profile.js"></script>
+  <script type="text/javascript">
+  function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  function whichButton(event,idCheckbox) {
+    var conver = String(idCheckbox)
+    document.getElementById(conver).style.display ="-webkit-inline-box";
+  }
+  function completedTask(idCheckbox,idInput){
+    var text = String('#'+idInput)
+    var checbox = String(idCheckbox)
+    if(document.getElementById(checbox).checked){
+      $(text).css({'text-decoration':'line-through','color':'#9e9e9e'})
+    }
+    else{
+      $(text).css({'text-decoration':'none','color':'black'})
+    }
+  }
+  var idPk;
+  function modalElementList(idCardList){
+    var content;
+    var contentBody1;
+    var contentBody2;
+    var secondContent;
+    var arrayObjectListInter=[]
+    var parse = String(idCardList)
+    idPk = parse.slice(8);
+    content = document.getElementById(parse).children
+    //console.log(content);
+    contentBody1=content[0]
+    contentBody2=content[1].children
+    // console.log(contentBody2);
+    // console.log(contentBody1.children[0].textContent);
+    $('#modaltitlelist').val(contentBody1.children[0].textContent)
+    $('#modaltextarealist').val(contentBody1.children[1].textContent)
+    $('#modaldatelist').text(contentBody1.children[3].value)
+    for (var i = 0; i < contentBody2.length; i++) {
+        if(contentBody2[i].tagName=="P"){
+          secondContent = contentBody2[i].children
+          for (var j = 0; j < secondContent.length; j++) {
+            if(secondContent[j].type=="hidden"){
+              id=secondContent[j].value
+            }
+            if(secondContent[j].type=="checkbox"){
+              if(secondContent[j].checked==false){
+                correct="None"
+              }else{
+                correct="True"
+              }
+            }
+            if (secondContent[j].tagName=='LABEL') {
+              description=secondContent[j].textContent
+            }
+          }
+          arrayObjectListInter.push({
+            'id':id,
+            'description':description,
+            'correct':correct
+          })
+        }
+    }
+    //console.log(arrayObjectListInter);
+    for (var i = 0; i < arrayObjectListInter.length; i++) {
+        createElementLiModal('myListModal','deleteModal','inputlistmodal','checkmodal','CheckBoxModal',arrayObjectListInter[i].description,arrayObjectListInter[i].correct,arrayObjectListInter[i].id)
+    }
+    $('#modal2').modal({dismissible: false});
+    $('#modal2').modal('open')
+  }
+  var conts=10000000;
+  function createElementLiModal(listId,elementId,idInput,idCheckbox,idDiv,description,correct,id){
+
+    //createElementLi(listId,elementId,idInput,idCheckbox,idDiv)
+    //onclick="createElementLi('myListModal','deleteModal','inputlistmodal','checkmodal','CheckBoxModal')
+    var elementLi = document.createElement("LI");
+    var elementIunput = document.createElement("INPUT");
+    var elementIunputHidden = document.createElement("INPUT");
+    var elementbtn = document.createElement("a");
+    var elementI = document.createElement("I");
+    var elementDiv = document.createElement("div")
+    var elementDivInput = document.createElement("INPUT")
+    var elementDivLabel = document.createElement("LABEL")
+    var borrar = document.createTextNode("delete");
+    elementIunput.setAttribute("type", "text");
+    elementIunput.setAttribute("name", idInput+conts);
+    elementIunput.setAttribute('id', idInput+conts);
+    elementIunput.setAttribute("placeholder", "Elemento de lista");
+    elementIunput.setAttribute("style", "width: 65%;");
+    elementIunput.setAttribute('onkeyup',"whichButton(event,'"+idDiv+conts+"')");
+    elementIunput.setAttribute('value',description)
+    elementIunputHidden.setAttribute("type","hidden")
+    elementIunputHidden.setAttribute("id","hidden"+conts)
+    elementIunputHidden.setAttribute("value",id)
+    elementI.setAttribute("class", "material-icons");
+    elementI.appendChild(borrar)
+    elementbtn.setAttribute('class', 'btn-floating waves-effect waves-ligh red tooltipped');
+    elementbtn.setAttribute('onclick',"deleteInputElement('"+elementId+conts+"','"+listId+"','"+id+"')")
+    elementbtn.setAttribute('style','bottom: 0px !important;left:0px;')
+    elementbtn.setAttribute('id', 'delete'+conts);
+    elementbtn.appendChild(elementI)
+    elementDiv.setAttribute('id', idDiv+conts)
+    elementDiv.setAttribute('style','display:-webkit-inline-box;')
+    elementDivInput.setAttribute('type','checkbox')
+    elementDivInput.setAttribute('name',idCheckbox+conts)
+    elementDivInput.setAttribute('id',idCheckbox+conts)
+    elementDivInput.setAttribute('class','filled-in')
+    elementDivInput.setAttribute('onclick',"completedTask('"+idCheckbox+conts+"','"+idInput+conts+"')")
+    if(correct=="True"){
+      elementDivInput.setAttribute('checked', 'checked')
+    }
+    elementDivLabel.setAttribute('for',idCheckbox+conts)
+    elementDivLabel.setAttribute('style','top:3vh;')
+    elementDiv.appendChild(elementDivInput)
+    elementDiv.appendChild(elementDivLabel)
+    elementLi.setAttribute('id', elementId+conts);
+    elementLi.setAttribute('style', 'padding:0px;');
+    elementLi.appendChild(elementDiv);
+    elementLi.appendChild(elementIunput);
+    elementLi.appendChild(elementIunputHidden);
+    elementLi.appendChild(elementbtn);
+    document.getElementById(listId).appendChild(elementLi);
+    conts+=1
+  }
+  function removeChildList() {
+    var padre = document.getElementById("myListModal");
+    while (padre.firstChild) {
+      padre.removeChild(padre.firstChild);
+    }
+  }
+  function editNoteList(){
+    var second=''
+    var el = document.getElementById("myListModal").children;
+    var arrayObjectList=[]
+    for (var i=0; i<el.length; i++) {
+      //console.log(el[i].children[2].tagName);
+      second=el[i].children;
+      //console.log(second)
+      for (var j = 0; j < second.length-1; j++) {
+          //console.log(second[j])
+          //console.log(second[j+1].value)
+          if(second[j].children[0].checked){
+            if(el[i].children[2].tagName=="INPUT"){
+              arrayObjectList.push({
+                'id':String(el[i].children[2].value),
+                'description':String(second[j+1].value),
+                'correct':'True'
+              })
+            }
+            else{
+              arrayObjectList.push({
+                'description':String(second[j+1].value),
+                'correct':'True'
+              })
+            }
+          }else{
+            if(el[i].children[2].tagName=="INPUT"){
+              arrayObjectList.push({
+                'id':String(el[i].children[2].value),
+                'description':String(second[j+1].value),
+                'correct':'None'
+              })
+            }
+            else{
+              arrayObjectList.push({
+                'description':String(second[j+1].value),
+                'correct':'None'
+              })
+            }
+          }
+          break
+      }
+  }
+  console.log(arrayObjectList)
+    jQuery.validator.setDefaults({
+      debug: true,
+      success: 'valid'
+      });
+    $('#listForm').validate({
+      rules:{
+          modaltitlelist:{
+            required:true,
+            minlength:6
+          },
+          modaltextarealist:{
+            required:true,
+            minlength:10
+          }
+      },
+      messages:{
+        modaltitlelist:{
+          required:'The title cant be empty, write a title'
+        },
+        modaltextarealist:{
+          required:'The note description cant be empty, write a description'
+        }
+      },
+    submitHandler:function(){
+      $.ajax({
+        url:constants().todolist+'?pk='+idPk,
+        method:'PUT',
+        headers: {"Authorization": 'token '+localStorage.getItem('token')},
+        data:{
+          title:$('#modaltitlelist').val(),
+          description:$('#modaltextarealist').val(),
+          listcontent:JSON.stringify(arrayObjectList)
+        },
+        dataType:'JSON',
+        success: function(data){
+          console.log(data)
+          alert("The note has been updated")
+          location.reload()
+        },
+        error:function(res){
+          console.log(res)
+          if(res.status==500){
+                alert('ERROR')
+          }
+          if(res.status==400){
+              alert('ERROR')
+          }
+        }
+      })
+    }
+    })
+  }
+  function enabledContent(idElement){
+    var content;
+    var secondContent;
+    var idcontent;
+    var idconcat;
+    content = document.getElementById(String(idElement)).children
+    for (var i = 0; i < content.length; i++) {
+        //console.log(content[i])
+        if(content[i].tagName=="P"){
+          secondContent = content[i].children
+          for (var j = 0; j < secondContent.length; j++) {
+            idcontent= secondContent[j].id
+            idconcat= '#'+idcontent
+            if (secondContent[j].tagName!='LABEL') {
+              $(idconcat).prop("disabled", false);
+            }
+          }
+        }
+        if (content[i].tagName=="BUTTON") {
+            idcontent= content[i].id
+            idconcat= '#'+idcontent
+            $(idconcat).prop("disabled", false);
+        }
+        if (content[i].tagName=="INPUT") {
+          idcontent= content[i].id
+          idconcat= '#'+idcontent
+          $(idconcat).prop("disabled", false);
+        }
+    }
+  }
+  function disabledContent(idElement){
+    var content;
+    var secondContent;
+    var idcontent;
+    var idconcat;
+    content = document.getElementById(String(idElement)).children
+    for (var i = 0; i < content.length; i++) {
+        //console.log(content[i])
+        if(content[i].tagName=="P"){
+          secondContent = content[i].children
+          for (var j = 0; j < secondContent.length; j++) {
+            idcontent= secondContent[j].id
+            idconcat= '#'+idcontent
+            if (secondContent[j].tagName!='LABEL') {
+              $(idconcat).prop("disabled", true);
+            }
+          }
+        }
+        if (content[i].tagName=="BUTTON") {
+            idcontent= content[i].id
+            idconcat= '#'+idcontent
+            $(idconcat).prop("disabled", true);
+        }
+        if (content[i].tagName=="INPUT") {
+          idcontent= content[i].id
+          idconcat= '#'+idcontent
+          $(idconcat).prop("disabled", true);
+        }
+    }
+  }
+  </script>
+</body>
+</html>

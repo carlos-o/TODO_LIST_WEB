@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>TodoList</title>
+</head>
+<body class="fondo">
+  <div class="container">
+    <div class="row">
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn button__register" onclick="$('#modal2').modal('open');">Register</a>
+      <!-- Modal Structure -->
+      <div id="modal2" class="modal modal-fixed-footer modal__recover">
+        <div class="modal-content" align="center">
+          <h4 style="color:#1976d2;">Create A New Account<i class="material-icons prefix iconbox" >account_box</i></h4>
+          <hr>
+          <div class="container">
+            <div class="row">
+              <form id="registerForm" method="POST">
+              <div class="input-field">
+                    <i class="material-icons prefix" style="top:15px;">account_circle</i>
+                    <!-- <label for="username">Username</label> -->
+                    <input id="username" name="username" type="text" class="validate" placeholder="Username">
+              </div>
+              <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">email</i>
+                  <!-- <label for="email">Email</label> -->
+                  <input id="emailregister" name="emailregister" type="email" class="validate" placeholder="Email">
+              </div>
+              <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">person</i>
+                  <!-- <label for="firstname">First Name</label> -->
+                  <input id="firstname" name="firstname" type="text" class="validate" placeholder="First name">
+              </div>
+              <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">person</i>
+                  <!-- <label for="lastname">Last Name</label> -->
+                  <input id="lastname" name="lastname" type="text" class="validate" placeholder="Last name">
+              </div>
+              <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">lock</i>
+                  <!-- <label for="passwordregister">Password</label> -->
+                  <input id="passwordregister" name="passwordregister" type="password" class="validate" placeholder="password">
+              </div>
+              <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">lock</i>
+                  <!-- <label for="confirmpassword">Confirm Password</label> -->
+                  <input id="confirmpassword" name="confirmpassword" type="password" class="validate" placeholder="Digit the password again">
+              </div>
+              <button id="recover" name="recover" type="submit" class="btn button">Send</button>
+              </form>
+            </div>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+
+        </div>
+      <div class="login">
+          <div class="loginBox box" align="center">
+              <h1 class="loginBox__title m-b-70">Todo-List</h1>
+              <form id="loginForm" method="POST">
+                <div class="input-field">
+                    <i class="material-icons prefix" style="top:15px;">account_circle</i>
+                    <!-- <label for="email">Email</label> -->
+                    <input id="email" name="email" type="text" class="validate" placeholder="Email">
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix" style="top:15px;">lock</i>
+                    <!-- <label for="password">Password</label> -->
+                    <input id="password" name="password" type="password" class="validate" placeholder="password">
+                </div>
+                <div class="">
+                    <a class="waves-effect waves-light link modal-trigger" href="#modal1" >Forgot password?</a>
+                </div>
+                <div class="">
+                    <button id="login" name="login" type="submit" class="btn button">Enter</button>
+                </div>
+              </form>
+          </div>
+      </div>
+      <!--modal recuperar contraseña-->
+      <div id="modal1" class="modal modal__recover">
+       <div class="modal-content" align="center">
+         <h4 style="color:#1976d2;">Recover Password<i class="material-icons prefix iconbox" >contact_mail</i></h4>
+         <hr>
+         <div class="container">
+           <div class="row">
+             <form id="recoverForm" method="POST">
+             <div class="input-field">
+                 <i class="material-icons prefix" style="top:15px;">email</i>
+                 <!-- <label for="emailrecover">Email</label> -->
+                 <input id="emailrecover" name="emailrecover" type="email" class="validate" placeholder="email">
+             </div>
+             <div class="">
+               <!-- <input type="submit" name="button" value="send" class="btn button"> -->
+              <button id="login" name="login" type="submit" class="btn button">Send</button>
+             </div>
+             </form>
+           </div>
+           </div>
+         </div>
+       <div class="modal-footer">
+         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+       </div>
+     </div>
+
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/jquery.cookie.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
